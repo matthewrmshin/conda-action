@@ -11,5 +11,6 @@ set -x
 if (($# != 0)); then
     conda activate "${GITHUB_WORKSPACE}/myenv"
     "$@"
+    find "${GITHUB_WORKSPACE}/myenv" -type f -ls
 fi
 exit
