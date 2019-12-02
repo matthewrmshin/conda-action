@@ -2,12 +2,14 @@
 set -eu
 set -o pipefail
 
-if ! conda env list 1>'/dev/null' | grep -F '/github/workspace/.env'; then
-    conda create -y --prefix='/github/workspace/.env'
+if ! conda env list 1>'/dev/null' | grep -F 'base'; then
+    conda create -y -n 'base'
     echo '. /opt/conda/etc/profile.d/conda.sh' >> ~/.bashrc
     . '/opt/conda/etc/profile.d/conda.sh'
 fi
+set -x
 if (($# != 0)); then
-    conda activate '/github/workspace/.env'
+    conda activate 'base'
     "$@"
 fi
+exit

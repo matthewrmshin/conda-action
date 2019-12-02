@@ -1,19 +1,32 @@
-name: Test Python Application in Conda
+name: Test and Deploy
 
 on: [push]
 
 jobs:
-  build:
 
-    runs-on: ubuntu-latest
-
-    steps:
+  test:
     - uses: actions/checkout@v1
-    - name: Build environment
+    - name: Update Conda environment
       uses: ./
       with:
         args: conda env update -p "${CONDA_PREFIX}" -f ./test/requirements.yml
-    - name: Show environment info
+    - name: Show Conda environment info
       uses: ./
       with:
         args: conda info
+
+  deploy:
+
+    needs: test
+    runs-on: ubuntu-latest
+    env:
+      IMAGETAG: "docker.pkg.github.com/${{github.repository}}/build:latest"
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Build the Docker image
+      run: docker build . --file 'Dockerfile' --tag "${IMAGETAG}"
+    - name: Deploy to GPR
+      run: |
+        docker login -u "${GITHUB_REPOSITORY%%/*}" --password-stdin 'docker.pkg.github.com' <<<'${{secrets.GITHUB_TOKEN}}'
+        docker push "${IMAGETAG}"
