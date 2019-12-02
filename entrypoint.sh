@@ -11,6 +11,5 @@ set -x
 if (($# != 0)); then
     conda activate "${GITHUB_WORKSPACE}"
     "$@"
-    ls -lA "${GITHUB_WORKSPACE}/bin"
 fi
 exit

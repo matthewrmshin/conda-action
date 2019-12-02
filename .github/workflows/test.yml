@@ -16,6 +16,8 @@ jobs:
       uses: ./
       with:
         args: conda info
+    - name: Debug
+      run: ls -lA "${GITHUB_WORKSPACE}/bin"
     - name: Prove that flake8 is installed
       uses: ./
       with:
