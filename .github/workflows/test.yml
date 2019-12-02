@@ -11,7 +11,7 @@ jobs:
     - name: Update Conda environment
       uses: ./
       with:
-        args: conda env update -n myenv -f ./test/requirements.yml
+        args: conda env update -f ./test/requirements.yml
     - name: Show Conda environment info
       uses: ./
       with:
