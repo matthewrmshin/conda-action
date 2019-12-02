@@ -14,7 +14,7 @@ jobs:
     - name: Update Conda environment with "requirements.yml"
       uses: matthewrmshin/conda-action@master
       with:
-        args: conda env update -p "${CONDA_PREFIX}"
+        args: conda env update -n base
     - name: Test with environment
       uses: matthewrmshin/conda-action@master
       with:
