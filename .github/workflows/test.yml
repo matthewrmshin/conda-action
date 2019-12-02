@@ -17,7 +17,7 @@ jobs:
       with:
         args: conda info
     - name: Debug
-      run: pwd
+      run: find -type f -ls
     - name: Prove that flake8 is installed
       uses: ./
       with:
