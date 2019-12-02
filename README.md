@@ -1,8 +1,8 @@
 # Conda-Action
 
-This action creates and activates a Conda environment with the project's
-requirement file, so you can run your logic in the correct Conda environment
-in the current job.
+This action creates and activates a Conda environment `myenv` with the
+project's requirement file. You can run your logic in the Conda environment for
+subsequent steps in the job.
 
 ## Example usage
 
@@ -14,7 +14,7 @@ jobs:
     - name: Update Conda environment with "requirements.yml"
       uses: matthewrmshin/conda-action@master
       with:
-        args: conda env update -n base
+        args: conda env update -n myenv
     - name: Test with environment
       uses: matthewrmshin/conda-action@master
       with:
