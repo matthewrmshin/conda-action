@@ -14,6 +14,10 @@ jobs:
       uses: ./
       with:
         args: conda info
+    - name: Prove that flake8 is installed
+      uses: ./
+      with:
+        args: flake8 --version
 
   deploy:
 
