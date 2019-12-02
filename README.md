@@ -1,23 +1,22 @@
-# Hello world docker action
+# Conda-Action
 
-This action prints "Hello World" to the log or "Hello" + the name of a person to greet. To learn how this action was built, see "[Creating a Docker container action](https://help.github.com/en/articles/creating-a-docker-container-action)" in the GitHub Help documentation.
-
-## Inputs
-
-### `who-to-greet`
-
-**Required** The name of the person to greet. Default `"World"`.
-
-## Outputs
-
-### `time`
-
-The time we greeted you.
+This action creates and activates a Conda environment with the project's
+requirement file, so you can run your logic in the correct Conda environment
+in the current job.
 
 ## Example usage
 
 ```yaml
-uses: actions/hello-world-docker-action@master
-with:
-  who-to-greet: 'Mona the Octocat'
+jobs:
+  build-and-run:
+    steps:
+    - uses: actions/checkout@v1
+    - name: Update Conda environment with "requirements.yml"
+      uses: matthewrmshin/conda-action@master
+      with:
+        args: conda env update -p "${CONDA_PREFIX}"
+    - name: Test with environment
+      uses: matthewrmshin/conda-action@master
+      with:
+        args: pytest
 ```

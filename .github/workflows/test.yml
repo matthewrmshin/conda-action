@@ -1,0 +1,19 @@
+name: Test Python Application in Conda
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Build environment
+      uses: ./
+      with:
+        args: conda env update -p "${CONDA_PREFIX}" -f ./test/requirements.yml
+    - name: Show environment info
+      uses: ./
+      with:
+        args: conda info
