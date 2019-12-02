@@ -10,6 +10,7 @@ fi
 set -x
 if (($# != 0)); then
     conda activate "${GITHUB_WORKSPACE}/myenv"
+    ls -lA "${GITHUB_WORKSPACE}/myenv/bin"
     "$@"
 fi
 exit
