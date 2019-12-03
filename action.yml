@@ -3,3 +3,6 @@ description: Create and activate a Conda environment
 runs:
   using: 'docker'
   image: 'Dockerfile'
+branding:
+  icon: circle
+  color: green
