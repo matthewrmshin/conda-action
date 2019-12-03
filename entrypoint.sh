@@ -2,15 +2,22 @@
 set -eu
 set -o pipefail
 
-if ! conda env list 1>'/dev/null' | grep -F "${GITHUB_WORKSPACE}/myenv"; then
-    conda create -y -p "${GITHUB_WORKSPACE}/myenv"
-    echo '. /opt/conda/etc/profile.d/conda.sh' >> ~/.bashrc
+ENV_PREFIX="${GITHUB_WORKSPACE}/myenv"
+
+env_invoke() {
     . '/opt/conda/etc/profile.d/conda.sh'
-fi
-set -x
-if (($# != 0)); then
-    conda activate "${GITHUB_WORKSPACE}/myenv"
+    conda activate "${ENV_PREFIX}"
     "$@"
-    find "${GITHUB_WORKSPACE}/myenv" -type f -ls
-fi
-exit
+    find "${ENV_PREFIX}" -type f -ls
+}
+
+main() {
+    if ! conda env list 1>'/dev/null' | grep -F "${ENV_PREFIX}"; then
+        (conda create -y -p "${ENV_PREFIX}")
+    fi
+    if (($# != 0)); then
+        (env_invoke "$@")
+    fi
+}
+
+main "$@"

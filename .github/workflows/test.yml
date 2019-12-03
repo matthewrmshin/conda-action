@@ -22,6 +22,10 @@ jobs:
       uses: ./
       with:
         args: flake8 --version
+    - name: Prove that Pytest is installed
+      uses: ./
+      with:
+        args: pytest
 
   deploy:
     needs: test
