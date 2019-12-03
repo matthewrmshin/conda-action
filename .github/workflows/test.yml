@@ -1,4 +1,4 @@
-name: Test and Deploy
+name: Test
 
 on: [push]
 
@@ -24,17 +24,3 @@ jobs:
       uses: ./
       with:
         args: pytest ./test
-
-  deploy:
-    needs: test
-    runs-on: ubuntu-latest
-    env:
-      IMAGETAG: "docker.pkg.github.com/${{github.repository}}/build:latest"
-    steps:
-    - uses: actions/checkout@v1
-    - name: Build the Docker image
-      run: docker build . --file 'Dockerfile' --tag "${IMAGETAG}"
-    - name: Deploy to GPR
-      run: |
-        docker login -u "${GITHUB_REPOSITORY%%/*}" --password-stdin 'docker.pkg.github.com' <<<'${{secrets.GITHUB_TOKEN}}'
-        docker push "${IMAGETAG}"
