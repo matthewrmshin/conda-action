@@ -11,7 +11,6 @@ main() {
     fi
     if (($# != 0)); then
         "$@"
-        find "${GITHUB_WORKSPACE}" -type d
     fi
 }
 

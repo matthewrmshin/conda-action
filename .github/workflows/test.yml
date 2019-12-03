@@ -16,8 +16,6 @@ jobs:
       uses: ./
       with:
         args: conda info
-    - name: Debug
-      run: pwd && find -type f -ls
     - name: Prove that flake8 is installed
       uses: ./
       with:
@@ -25,7 +23,7 @@ jobs:
     - name: Prove that Pytest is installed
       uses: ./
       with:
-        args: pytest
+        args: pytest ./test
 
   deploy:
     needs: test
