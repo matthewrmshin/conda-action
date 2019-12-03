@@ -17,11 +17,11 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name: Update Conda environment with "requirements.yml"
-      uses: matthewrmshin/conda-action@master
+      uses: matthewrmshin/conda-action@v1
       with:
         args: conda env update -f ./requirements.yml
     - name: Run "pytest" with the Conda environment
-      uses: matthewrmshin/conda-action@master
+      uses: matthewrmshin/conda-action@v1
       with:
         args: pytest
 ```
