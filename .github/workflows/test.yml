@@ -19,7 +19,7 @@ jobs:
     - name: Prove that flake8 is installed
       uses: ./
       with:
-        args: flake8 --version
+        args: flake8 .
     - name: Prove that Pytest is installed
       uses: ./
       with:
