@@ -6,7 +6,7 @@ main() {
     set -x
     local ENV_PREFIX="${GITHUB_WORKSPACE}/myenv"
     . '/opt/conda/etc/profile.d/conda.sh'
-    if ! conda activate "${ENV_PREFIX}" 2>'/dev/null'; then
+    if ! conda activate "${ENV_PREFIX}"; then
         conda create -y -p "${ENV_PREFIX}"
         conda activate "${ENV_PREFIX}"
     fi
