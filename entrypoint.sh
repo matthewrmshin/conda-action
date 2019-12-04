@@ -3,6 +3,7 @@ set -eu
 set -o pipefail
 
 main() {
+    set -x
     local ENV_PREFIX="${GITHUB_WORKSPACE}/myenv"
     . '/opt/conda/etc/profile.d/conda.sh'
     if ! conda activate "${ENV_PREFIX}" 2>'/dev/null'; then
