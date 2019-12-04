@@ -5,7 +5,7 @@
 # Conda-Action
 
 This action runs a container from Ubuntu with Miniconda3 installed. It creates
-and activates a Conda environment `--prefix="${GITHUB_WORKSPACE}/.myenv"`. You
+and activates a Conda environment `--prefix="${HOME}/myenv"`. You
 can update the environment with your project's requirement file, and run your
 logic in the Conda environment for subsequent steps in the job.
 
